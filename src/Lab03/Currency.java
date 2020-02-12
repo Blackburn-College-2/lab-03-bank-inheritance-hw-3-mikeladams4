@@ -9,6 +9,16 @@ package Lab03;
  *
  * @author mikel.adams
  */
-public class Currency {
+public class Currency{
+    String name;
+    String symbol;
     
+    public Currency(String name, String symbol) {
+        this.name = name;
+        this.symbol = symbol;
+    }
+    
+    public boolean equals(Object object){
+    return true;
+    }
 }
