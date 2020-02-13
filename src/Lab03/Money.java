@@ -11,12 +11,24 @@ package Lab03;
  */
 public class Money {
 
-    Currency currency;
-    long amount;
+    private Currency currency;
+    private double amount;
 
     public Money(Currency currency, double amount) {
         this.currency = currency;
-        this.amount = (long) amount;
+        this.amount = amount;
+    }
+
+    public double getAmount() {
+        return this.amount;
+    }
+
+    public Currency getCurrency() {
+        return this.currency;
+    }
+    
+    public void setAmount(double x){
+        this.amount = x;
     }
 
     public String getAmountString() {
@@ -35,9 +47,14 @@ public class Money {
         Money money = new Money(this.currency, ans);
         return money;
     }
-    
+
+    public double multiply(double input) {
+        double ans = this.amount * input;
+        return ans;
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         String s = this.currency.symbol + this.amount;
         return s;
     }

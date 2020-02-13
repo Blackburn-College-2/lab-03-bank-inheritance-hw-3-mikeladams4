@@ -11,27 +11,42 @@ import java.util.ArrayList;
  *
  * @author mikel.adams
  */
-public class Account {
+public abstract class Account {
 
     Money balance;
     ArrayList<Money> history = new ArrayList<>();
+    ArrayList<Transactions> transactions = new ArrayList<>();
 
     public Account(Money balance) {
         this.balance = balance;
     }
 
     public void withdraw(Money m) {
+        Transactions trans = new Transactions();
+        trans.setOld(this.balance);
+        trans.setChange(m);
         this.balance = this.balance.subtract(m);
-        this.history.add(new Money(m.currency, -m.amount));
+        trans.setNew(this.balance);
+        this.history.add(new Money(m.getCurrency(), -m.getAmount()));
+        this.transactions.add(trans);
     }
 
     public void deposit(Money m) {
+        Transactions trans = new Transactions();
+        trans.setOld(this.balance);
+        trans.setChange(m);
         this.balance = this.balance.add(m);
+        trans.setNew(this.balance);
         this.history.add(m);
+        this.transactions.add(trans);
     }
 
     public Money getBalance() {
         return this.balance;
+    }
+    
+    public void setBalance(Money x){
+        this.balance = x;
     }
 
     public void printHistory() {
@@ -40,9 +55,15 @@ public class Account {
             System.out.println(this.history.get(i).toString());
         }
     }
+    
+    public Transactions[] getHistory(){
+        Transactions[] trans = new Transactions[transactions.size()];
+        transactions.toArray(trans);
+        return trans;
+    }
 
     @Override
     public String toString() {
-        return this.balance.toString();
+        return "Account Balance: " + this.balance.toString();
     }
 }
