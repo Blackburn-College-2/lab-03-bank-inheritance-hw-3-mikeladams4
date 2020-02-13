@@ -21,8 +21,18 @@ public class Runner {
         Money ten = new Money(dollar, 10);
         Account Mike = new Account(fifty);
         Mike.deposit(fifty);
+        Mike.withdraw(twenty);
+        Mike.deposit(fifty);
+        Mike.withdraw(twenty);
+        Mike.deposit(fifty);
         Mike.withdraw(ten);
+        Mike.deposit(twenty);
+        Mike.deposit(fifty);
+        Mike.withdraw(ten);
+        Mike.withdraw(fifty);
         System.out.println(Mike.balance.toString());
+        System.out.println(Mike.toString());
+        Mike.printHistory();
     }
     
 }

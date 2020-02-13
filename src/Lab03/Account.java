@@ -5,28 +5,44 @@
  */
 package Lab03;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mikel.adams
  */
 public class Account {
+
     Money balance;
-    
-    public Account(Money balance){
+    ArrayList<Money> history = new ArrayList<>();
+
+    public Account(Money balance) {
         this.balance = balance;
     }
-    
-    public void withdraw(Money m){
-        Money after = this.balance.subtract(m);
-        this.balance = after;
+
+    public void withdraw(Money m) {
+        this.balance = this.balance.subtract(m);
+        this.history.add(new Money(m.currency, -m.amount));
     }
-    
-    public void deposit(Money m){
-        Money after = this.balance.add(m);
-        this.balance = after;
+
+    public void deposit(Money m) {
+        this.balance = this.balance.add(m);
+        this.history.add(m);
     }
-    
-    public Money getBalance(){
+
+    public Money getBalance() {
         return this.balance;
+    }
+
+    public void printHistory() {
+        System.out.println("Account Action History:");
+        for (int i = 0; i < this.history.size(); i++) {
+            System.out.println(this.history.get(i).toString());
+        }
+    }
+
+    @Override
+    public String toString() {
+        return this.balance.toString();
     }
 }

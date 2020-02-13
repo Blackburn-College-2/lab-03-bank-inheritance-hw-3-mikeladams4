@@ -12,11 +12,11 @@ package Lab03;
 public class Money {
 
     Currency currency;
-    double amount;
+    long amount;
 
     public Money(Currency currency, double amount) {
         this.currency = currency;
-        this.amount = amount;
+        this.amount = (long) amount;
     }
 
     public String getAmountString() {
